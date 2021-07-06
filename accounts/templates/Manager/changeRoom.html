@@ -1,0 +1,65 @@
+{% extends 'Manager/base.html' %}
+{% load static %}
+
+{% block title %}
+Chuyển phòng cho sinh viên {{ StudentName }}
+{% endblock title %}
+
+{% block css  %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Chuyển phòng cho sinh viên {{ StudentName }}</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+              <form method='POST'>
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Họ và tên</label>
+                    <input type="text" class="form-control"value="{{ StudentName }}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Mã số sinh viên</label>
+                    <input type="int" class="form-control" value="{{ MSSV }}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Phòng hiện tại</label>
+                    <input type="text" class="form-control" value="{{ RoomName }} - {{ TowerName }}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Chuyển tới phòng</label>
+                    <input type="text" class="form-control" name='RoomName' placeholder={{ RoomName }} required>
+                  </div>
+                  <div class="form-group">
+                    <label>Dãy nhà</label>
+                    <input type="text" class="form-control" name='TowerName' placeholder={{ TowerName }} required>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="button" class="btn btn-primary"onclick="window.location='http://127.0.0.1:8000/RoomManagement/{{ RoomID }}/RoomListStudent/';">Huỷ bỏ</button>
+                <input type="submit" class="btn btn-primary" value="Chuyển phòng"></input>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+{% endblock  %}

@@ -1,0 +1,94 @@
+{% extends 'Manager/base.html' %}
+{% load static %}
+
+{% block title  %}
+Trang quản lý sinh viên ktx
+{% endblock %}
+
+{% block css  %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Danh sách các sinh viên trong ký túc xá</b></h3>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/StudentManagement/createStudent/';">Thêm sinh viên mới</button>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Mã sinh viên</th>
+                    <th>Họ và tên</th>
+                    <th>Số CMND</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Quê quán</th>
+                    <th>Chức năng</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  {% for row in data %}
+                  <tr>
+                    <td>{{ row.MaSV }}</td>
+                    <td>{{ row.HoTen }}</td>
+                    <td>{{ row.CMND }}</td>
+                    <td>{{ row.NgaySinh }}</td>
+                    <td>{{ row.GioiTinh }}</td>
+                    <td>{{ row.QueQuan }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/StudentManagement/{{ row.MaSV }}/editStudentInfo/';">Chỉnh sửa thông tin</button>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/StudentManagement/{{ row.MaSV }}/viewBreakRule/';">Lịch sử vi phạm</button>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/StudentManagement/{{ row.MaSV }}/deleteStudent/';">Xoá sinh viên</button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock content %}
+
+{% block scripts %}
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <!-- DataTables -->
+  <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+{% endblock  %}

@@ -1,0 +1,91 @@
+{% extends 'Manager/base.html' %}
+{% load static %}
+
+{% block title  %}
+Trang quản lý tiền điện
+{% endblock %}
+
+{% block css  %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Danh sách nộp tiền điện của các phòng</b></h3>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/RoomManagement/ElectricityBill/inputElectricityBill/';">Nhập tiền điện tiêu thụ</button>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Ngày chốt</th>
+                    <th>Mã phòng</th>
+                    <th>Tên phòng</th>
+                    <th>Số tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Chức năng</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  {% for row in data %}
+                  <tr>
+                    <td>{{ row.NgayLap }}</td>
+                    <td>{{ row.MaPhong.MaPhong }}</td>
+                    <td>{{ row.MaPhong.TenPhong }}</td>
+                    <td>{{ row.SoTien }}</td>
+                    <td>{{ row.TrangThai }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect"  onclick="window.location='http://127.0.0.1:8000/RoomManagement/ElectricityBill/{{ row.MaPhong.MaPhong }}/acceptElectricityBill/';">Xác nhận thu tiền</button>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/RoomManagement/ElectricityBill/{{ row.MaPhong.MaPhong }}/returnElectricityBill/';">Hoàn tác thu tiền</button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock content %}
+
+{% block scripts %}
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <!-- DataTables -->
+  <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+{% endblock  %}

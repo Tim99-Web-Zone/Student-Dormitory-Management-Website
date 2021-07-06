@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>CRM</title>
+<link rel="stylessheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+<hr>
+{% include 'accounts/navbar.html' %}
+{% block content %}
+{% endblock %}
+</hr>
+<h5>Footer</h5>
+</body>
+
+</html>

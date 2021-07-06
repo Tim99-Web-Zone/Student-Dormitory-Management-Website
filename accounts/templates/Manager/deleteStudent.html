@@ -1,0 +1,58 @@
+{% extends 'Manager/base.html' %}
+{% load static %}
+
+{% block title  %}
+Xoá sinh viên {{ StudentName }}
+{% endblock %}
+
+{% block css  %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Xoá sinh viên {{ StudentName }}</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method='POST'>
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label >Mã số sinh viên</label>
+                    <input type="text" class="form-control" value="{{ MaSV }}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label >Họ và tên</label>
+                    <input type="text" class="form-control" value="{{ StudentName }}" disabled>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="button" class="btn btn-primary"onclick="window.location='http://127.0.0.1:8000/StudentManagement/';">Huỷ bỏ</button>
+                  <button type="submit" class="btn btn-primary">Xác nhận xoá sinh viên</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock content %}
+
+{% block scripts %}
+  
+{% endblock  %}

@@ -1,0 +1,72 @@
+{% extends "Student\base.html" %}
+{% load static %}
+{% block content %}
+        <!-- Content Wrapper. Contains page content -->
+        {% comment %} <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-12">
+                        <div class="col-sm-12">
+              <!-- /.card-header --> {% endcomment %}
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Danh Sách Phòng </h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+       <table id="example1" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Tên Phòng</th>
+            <th>Dãy Nhà</th>
+            <th>Giới Tính SV </th>
+            <th>Loại Phòng </th>
+            <th>Số Lượng SV</th>
+            <th>Giá Phòng</th>
+            <th>Chức năng</th>
+          </tr>
+        </thead>
+        <tbody>
+              {% for row in data %}
+                <tr>
+                  <td> {{ row.TenPhong }} </td>
+                  <td> {{ row.DayNha }} </td>
+                  <td> {{ row.GioiTinhSV }} </td>
+                  <td> {{ row.LoaiPhong }} </td>
+                  <td>
+                    {% for i in count %}
+                        {% if i.MaPhong_id == row.MaPhong %}
+                            {{ i.total }}/{{ row.SoLuongSV }}
+                        {% endif %}
+                      {% endfor %}
+                  </td>
+                  <td> {{ row.GiaPhong }} </td>
+                  <td> 
+                    <a class="btn btn-info btn-sm" href="#">
+                    Xem thông tin phòng
+                    </a>
+                    <a class="btn btn-info btn-sm" href="http://127.0.0.1:8000/Student/Room/ListStudent/" {% if RoomID != row.MaPhong %}hidden{% endif %}>
+                    Danh sách bạn cùng phòng
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+{% endblock %}

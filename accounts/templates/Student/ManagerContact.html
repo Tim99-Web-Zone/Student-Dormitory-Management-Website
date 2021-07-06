@@ -1,0 +1,50 @@
+{% extends "Student\base.html" %}
+{% load static %}
+
+{% block content %}
+     <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Danh sách cán bộ quản lý ký túc xá</h3>
+        </div>
+              <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Họ và tên</th>
+              <th>Giới tính </th>
+              <th>Quê quán </th>
+              <th>Chức vụ</th>
+              <th>Dãy nhà quản lý</th>
+              <th>Số điện thoại</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data %}
+            <tr>
+              <td>{{ row.MaNV.HoTen }}</td>
+              <td>{{ row.MaNV.GioiTinh }}</td>
+              <td>{{ row.MaNV.QueQuan }}</td>
+              <td>{{ row.MaNV.ChucVu }}</td>
+              <td>{{ row.DayNha }}</td>
+              <td>{{ row.MaNV.SDT }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+{% endblock %}

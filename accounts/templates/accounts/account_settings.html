@@ -1,0 +1,64 @@
+{% load static %}
+{% block content %}
+<style>
+table,th,td{
+    border:1px solid black;
+    border-collapse:collapse;
+    text-align:center;
+}
+table{
+    width:100%
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+#lo_button{
+  float:right;
+  background-color:blue;
+}
+
+span{
+  color:white;
+  float:right;
+  text-align:center;
+  padding:13px 5px 0px 0px;
+}
+img{
+  height:300px;
+  width:300px;
+}
+</style>
+
+<ul>
+  <li><a class="active" href="{% url 'user' %}">Back to profile</a></li>
+  <li id="lo_button"><a href="http://127.0.0.1:8000/login/">Logout</a></li>
+  <span>Hello {{request.user}}</span>
+</ul>
+<img src="{{request.user.customer.profile_pic.url}}"><br><br>
+<form method='POST' action='' enctype='multipart/form-data'>
+{% csrf_token %}
+{{form.as_p}}
+<input type='submit' name='update info'>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'Manager/base.html' %}
+{% load static %}
+
+{% block title %}
+Chỉnh sửa thông tin sinh viên {{ StudentName }}
+{% endblock title %}
+
+{% block css  %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Chỉnh sửa thông tin sinh viên {{ StudentName }}</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="POST">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form }}
+                </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <input type="submit" class="btn btn-primary" value="Cập nhật"></input>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+{% endblock  %}

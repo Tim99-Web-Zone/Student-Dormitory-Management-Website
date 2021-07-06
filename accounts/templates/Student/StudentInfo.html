@@ -1,0 +1,108 @@
+{% extends "Student\base.html" %}
+{% load static %}
+{% block content %}
+        <!-- Content Wrapper. Contains page content -->
+        <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="sticky-top mb-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1><center> Thông tin cá nhân </center></h1><br/>
+            <div class="row">
+              <br>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Mã số sinh viên</label>
+                  <input type="text" name="code" class="form-control" 
+                    value="{{ data.MaSV }}" placeholder="Mã số sinh viên" 
+                    readonly oninvalid="this.setCustomValidity('Trường yêu cầu nhập')" oninput="setCustomValidity('')">
+                </div>
+              </div>
+              <br>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Tên sinh viên</label>
+                  <input type="text" name="name" class="form-control" value="{{ data.HoTen }}" placeholder="Tên sinh viên"
+                    readonly oninvalid="this.setCustomValidity('Trường yêu cầu nhập')" oninput="setCustomValidity('')">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                  <label>Giới tính</label>
+                  <input type="text" name="code" class="form-control" 
+                    value="{{ data.GioiTinh }}"
+                    readonly oninvalid="this.setCustomValidity('Trường yêu cầu nhập')" oninput="setCustomValidity('')">
+                </div>
+              <br>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Quê quán</label>
+                  <input type="text" name="address" class="form-control" value="{{ data.QueQuan }}" placeholder="Quê quán" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Ngày sinh</label>
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" name="dob" value="{{ data.NgaySinh }}" class="form-control datetimepicker-input" data-target="#reservationdate" readonly/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    </div>
+      </div>              
+</div>
+      </div>
+    </section>
+    </div>
+      </div> 
+             <!-- /.col -->
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <div class="card-body p-0">
+                                
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+            <b>KTXĐHBKHN</b> 
+       </div>
+           <i><b>Hotline: 19001080</b></i>
+     </footer>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
+    <script>
+    $(function () {
+      $('#reservationdate').datetimepicker({
+          format: 'DD/MM/YYYY'
+      });
+    })
+{% endblock %}

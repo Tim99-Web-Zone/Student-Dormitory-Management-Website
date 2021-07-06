@@ -1,0 +1,47 @@
+{% extends 'accounts/main.html'%}
+
+{% block content %}
+
+<style>
+table,th,td{
+    border:1px solid black;
+    border-collapse:collapse;
+    text-align:center;
+}
+table{
+    width:100%
+}
+</style>
+
+<h1>Customer</h1>
+<p>Phone:{{customer.phone}}</p>
+<p>Date_created:{{customer.date_created}}</p>
+<p>Total orders:{{order_count}}</p>
+<p>
+<table>
+<tr>
+<th>Product</th>
+<th>Category</th>
+<th>Date_ordered</th>
+<th>Status</th>
+<th>Update</th>
+<th>Remove</th>
+</tr>
+{% for order in orders %}
+<tr>
+    <td>{{order.product}}</td>
+    <td>{{order.product.category}}</td>
+    <td>{{order.date_created}}</td>
+    <td>{{order.status}}</td>
+    <td><button style="background-color:cyan"><a href="{% url 'update_order' order.id %}">Update</a></button></td>
+    <td><button style="background-color:red"><a href="{% url 'delete_order' order.id %}">Remove</a></button></td>
+</tr>
+{% endfor %}
+</table>
+
+<form method="GET">
+{{myFilter.form}}<br>
+<button>Search</button>
+</form>
+
+{% endblock %}

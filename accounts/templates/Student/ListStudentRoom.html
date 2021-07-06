@@ -1,0 +1,57 @@
+{% extends "Student\base.html" %}
+{% load static %}
+{% block content %}
+        {% comment %} <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-12">
+                        <div class="col-sm-12">>
+              <div class="card"> {% endcomment %}
+              <div class="card-header">
+                <h3 class="card-title">Danh sách bạn cùng phòng</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Mã số sinh viên</th>
+                      <th>Họ và tên</th>
+                      <th>Ngày Sinh</th>
+                      <th>Quê quán</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in data %}
+                    <tr>
+                      <td> {{ row.MaSV.MaSV }} </td>
+                      <td> {{ row.MaSV.HoTen }} </td>
+                      <td> {{ row.MaSV.NgaySinh }} </td>
+                      <td> {{ row.MaSV.QueQuan }} </td>
+                    </tr>
+                    {% endfor %}
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'Manager/base.html' %}
+{% load static %}
+
+{% block title  %}
+Trang quản lý phòng ktx
+{% endblock %}
+
+{% block css  %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Danh sách các phòng quản lý</b></h3>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/RoomManagement/createRoom';">Tạo phòng</button>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Mã Phòng</th>
+                    <th>Tên phòng</th>
+                    <th>Loại phòng</th>
+                    <th>Dãy nhà</th>
+                    <th>Giá thuê</th>
+                    <th>Số sinh viên hiện tại</th>
+                    <th>Số sinh viên tối đa</th>
+                    <th>Chức năng</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <!--
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet
+                      Explorer 4.0
+                    </td>
+                    <td>Win 95+</td>
+                    <td> 4</td>
+                    <td>X</td>
+                  </tr>
+                  -->
+
+                  {% for row in data %}
+                  <tr>
+                    <td>{{ row.MaPhong }}</td>
+                    <td>{{ row.TenPhong }}</td>
+                    <td>{{ row.LoaiPhong }}</td>
+                    <td>{{ row.DayNha }}</td>
+                    <td>{{ row.GiaPhong }}</td>
+                    <td>
+                      {% for i in count %}
+                        {% if i.MaPhong_id == row.MaPhong %}
+                            {{ i.total }}
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+                    <td>{{ row.SoLuongSV }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect"  onclick="window.location='http://127.0.0.1:8000/RoomManagement/{{ row.MaPhong }}/RoomInfo/';">Chỉnh sửa thông tin</button>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/RoomManagement/{{ row.MaPhong }}/RoomListStudent/';">Danh sách sinh viên</button>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/RoomManagement/{{ row.MaPhong }}/RoomCharge/';">Tiền thuê phòng</button>
+                      <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" onclick="window.location='http://127.0.0.1:8000/RoomManagement/{{ row.MaPhong }}/deleteRoom/';">Xoá phòng</button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock content %}
+
+{% block scripts %}
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <!-- DataTables -->
+  <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+{% endblock  %}

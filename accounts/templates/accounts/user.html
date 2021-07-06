@@ -1,0 +1,74 @@
+
+{% block content %}
+
+<style>
+table,th,td{
+    border:1px solid black;
+    border-collapse:collapse;
+    text-align:center;
+}
+table{
+    width:100%
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+#lo_button{
+  float:right;
+  background-color:blue;
+}
+
+span{
+  color:white;
+  float:right;
+  text-align:center;
+  padding:13px 5px 0px 0px;
+}
+</style>
+
+<ul>
+  <li><a class="active" href="{% url 'account_settings' %}">Account settings</a></li>
+  <li id="lo_button"><a href="http://127.0.0.1:8000/login/">Logout</a></li>
+  <span>Hello {{request.user}}</span>
+</ul>
+
+<h1>User profile</h1>
+
+<table>
+<tr>
+<th>Product</th>
+<th>Category</th>
+<th>Date_ordered</th>
+<th>Status</th>
+</tr>
+{% for order in orders %}
+<tr>
+    <td>{{order.product}}</td>
+    <td>{{order.product.category}}</td>
+    <td>{{order.date_created}}</td>
+    <td>{{order.status}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock content %}

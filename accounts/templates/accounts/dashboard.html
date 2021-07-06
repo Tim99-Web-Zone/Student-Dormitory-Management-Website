@@ -1,0 +1,55 @@
+{% extends 'accounts/main.html'%}
+
+{% block content %}
+
+<style>
+table,th,td{
+    border:1px solid black;
+    border-collapse:collapse;
+    text-align:center;
+}
+table{
+    width:100%
+}
+</style>
+
+<h1>Dashboard</h1>
+<button>Add customer</button>
+<table>
+<tr>
+<th></th>
+<th>Customer</th>
+<th>Phone</th>
+<tr>
+{% for customer in customers %}
+<tr>
+    <td><a href="{% url 'customer' customer.id %}">View</a></td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.phone}}</td>
+</tr>
+{% endfor %}
+</table>
+<br><br>
+<button><a href="{% url 'create_order' %}">Create Order</a></button>
+<table>
+<tr>
+<th>Customer</th>
+<th>Product</th>
+<th>Date Ordered</th>
+<th>Status</th>
+<th>Update</th>
+<th>Remove</th>
+<tr>
+{% for order in orders %}
+<tr>
+    <td>{{order.customer}}</td>
+    <td>{{order.product}}</td>
+    <td>{{order.date_created}}</td>
+    <td>{{order.status}}</td>
+    <td><button style="background-color:cyan"><a href="{% url 'update_order' order.id %}">Update</a></button></td>
+    <td><button style="background-color:red"><a href="{% url 'delete_order' order.id %}">Remove</a></button></td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
